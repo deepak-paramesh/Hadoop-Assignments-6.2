@@ -1,0 +1,12 @@
+1. select temp_date, temp from temparature where pincode>300000 and pincode<399999;
+
+2. select SUBSTR(temp_date,7,4), MAX(temp) from temparature GROUP BY temp_date;
+
+3. select SUBSTR(temp_date,7,4), MAX(temp) from temparature GROUP BY temp_date HAVING COUNT(temp_date)>2;
+
+4. CREATE VIEW temparature_view_vm AS select SUBSTR(temp_date,7,4), MAX(temp) from temparature GROUP BY temp_date HAVING COUNT(temp_date)>2;
+
+5. INSERT OVERWRITE LOCAL DIRECTORY '/home/acadgild/Desktop/Hive/temp_output' 
+    > ROW FORMAT DELIMITED                                                       
+    > FIELDS TERMINATED BY '|'                                                   
+    > select * from temparature_view_vm; 
